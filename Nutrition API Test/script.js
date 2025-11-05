@@ -9,14 +9,14 @@ let currentSort = 'name';
 
 // Sample queries to populate the initial randomized list
 const sampleQueries = [
-    '1 cup rice',
-    '1 banana',
-    '100g chicken breast',
-    '1 apple',
-    '1 slice whole wheat bread',
-    '1 cup milk',
-    '1 egg',
-    '1 tbsp olive oil'
+    // '1 cup rice',
+    // '1 banana',
+    // '100g chicken breast',
+    // '1 apple',
+    // '1 slice whole wheat bread',
+    // '1 cup milk',
+    // '1 egg',
+    // '1 tbsp olive oil'
 ];
 
 async function searchFood() {
