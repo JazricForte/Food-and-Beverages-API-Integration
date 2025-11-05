@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drink Recipes</title>
+  <link rel="stylesheet" href="styles/drinks.css" />
 </head>
 <body>
-    
+  <nav>
+    <img src="sipsnsavor.jpg" alt="Logo" class="logo">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#"class="active">Drinks</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Nutrition</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Drink Recipes</h1>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search for a drink..." />
+      <select id="drinkType">
+        <option value="all">All Drinks</option>
+        <option value="Ordinary_Drink">Ordinary Drink</option>
+        <option value="Cocktail">Cocktail</option>
+        <option value="Milk / Float / Shake">Milk / Float / Shake</option>
+        <option value="Other/Unknown">Other/Unknown</option>
+        <option value="Cocoa">Cocoa</option>
+        <option value="Shot">Shot</option>
+        <option value="Coffee / Tea">Coffee / Tea</option>
+        <option value="Homemade Liqueur">Homemade Liqueur</option>
+        <option value="Punch / Party Drink">Punch / Party Drink</option>
+        <option value="Beer">Beer</option>
+        <option value="Soft Drink">Soft Drink</option>
+      </select>
+      <button id="randomBtn">Random</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="drinksContainer" class="drinks-grid"></div>
+
+    <div class="pagination">
+      <button id="prevPage" class="page-btn">←</button>
+      <span id="pageInfo" class="page-btn">1 / 1</span>
+      <button id="nextPage" class="page-btn">→</button>
+    </div>
+  </main>
+
+  <!-- Drink Info Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <button id="closePopup" class="close-btn">✕</button>
+      <img id="popupImg" src="" alt="Drink Image">
+      <h2 id="popupTitle"></h2>
+      <h3>Ingredients</h3>
+      <ul id="popupIngredients"></ul>
+      <h3>Instructions</h3>
+      <p id="popupInstructions"></p>
+    </div>
+  </div>
+
+  <script src="scripts/drinks.js"></script>
 </body>
 </html>
