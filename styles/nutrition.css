@@ -5,17 +5,39 @@ body {
   color: #222;
 }
 
+.leaf {
+  width: 15%;
+  margin-left: 20px;
+  position: absolute;
+  left: 15px;
+} 
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   padding: 15px 40px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.greenLine {
+  margin: 0px;
+  width: 50%;
 }
 
 .logo img {
   height: 50px;
   width: auto;
+}
+
+.navigation {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 160px;
 }
 
 nav a {
@@ -39,7 +61,7 @@ main {
 .title {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: -30px;
   color: #222;
 }
 
@@ -49,12 +71,11 @@ main {
   width: 140px;
   height: 4px;
   margin: 8px auto;
-  background-color: #3cb043;
   border-radius: 2px;
 }
 
 .search-container {
-  margin: 20px auto;
+  margin: 10px auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +106,7 @@ select {
 
 .nutrition-card {
   width: 350px;
-  margin: 40px auto;
+  margin: 40px auto 0px;
   border: 1px solid #ccc;
   border-radius: 12px;
   box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
@@ -125,7 +146,7 @@ footer {
 }
 
 footer img {
-  width: 100px;
+  width: 15%;
   height: auto;
   margin-right: 20px;
   border-radius: 8px;
