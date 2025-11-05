@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutrition Facts</title>
+  <link rel="stylesheet" href="styles/nutrition.css" />
 </head>
 <body>
-    
+  <header>
+    <div class="logo">
+      <img src="assets/sipsnsavor.jpg" alt="SipNsavor Logo">
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Food</a>
+      <a href="#">Drinks</a>
+      <a href="#" class="active">Nutrition</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="title">Nutrition Facts</h2>
+
+    <div class="search-container">
+      <input type="text" placeholder="Search" id="query"/>
+      <button class="search-btn" onclick="searchFood()">Search</button>
+    </div>
+
+    <div class="nutrition-card" id="foodList">
+        <div class="card-header">Nutrition Data</div>
+      <div class="card-body">
+        <p class="placeholder-text">Search for a food item to see its nutrition facts here.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <img src="assets/greenapples.jpg" alt="Green Apples">
+  </footer>
+
+  <Script src="scripts/nutrition.js"></Script>
 </body>
 </html>
