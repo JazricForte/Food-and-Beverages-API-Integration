@@ -1,11 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drink Recipes</title>
+  <link rel="stylesheet" href="styles/drinks.css" />
 </head>
 <body>
-    
+
+  <!-- Header with Navbar -->
+  <header>
+    <div class="logo">
+      <img src="assets/sipsnsavor.jpg" alt="SipNsavor Logo">
+    </div>
+    <nav class="navigation">
+      <a href="index.html">Home</a>
+      <a href="food.html">Food</a>
+      <a href="drinks.html" class="active">Drinks</a>
+      <a href="nutrition.html">Nutrition</a>
+    </nav>
+  </header>
+
+
+  <main>
+    <!-- Decorative Images -->
+    <img src="assets/blackberry.png" alt="blackberry" class="blackberry"/>
+    <h2 class="title">Drink Recipes</h2>
+    <img src="assets/blueLine.png" alt="blueLine" class="blueLine"/>
+
+     <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search for a drink..." />
+    <select id="drinkType">
+      <option value="all">All Drinks</option>
+      <option value="Ordinary_Drink">Ordinary Drink</option>
+      <option value="Cocktail">Cocktail</option>
+      <option value="Milk / Float / Shake">Milk / Float / Shake</option>
+      <option value="Other/Unknown">Other/Unknown</option>
+      <option value="Cocoa">Cocoa</option>
+      <option value="Shot">Shot</option>
+      <option value="Coffee / Tea">Coffee / Tea</option>
+      <option value="Homemade Liqueur">Homemade Liqueur</option>
+      <option value="Punch / Party Drink">Punch / Party Drink</option>
+      <option value="Beer">Beer</option>
+      <option value="Soft Drink">Soft Drink</option>
+    </select>
+    <button id="randomBtn">Random Drink</button>
+  </div>
+
+    <div id="drinksContainer" class="drinks-grid"></div>
+
+
+    <div class="pagination">
+      <button id="prevPage" class="page-btn">←</button>
+      <span id="pageInfo" class="page-btn">1 / 1</span>
+      <button id="nextPage" class="page-btn">→</button>
+    </div>
+  </main>
+
+  <!-- Drink Info Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <button id="closePopup" class="close-btn">✕</button>
+      <img id="popupImg" src="" alt="Drink Image">
+      <h2 id="popupTitle"></h2>
+      <h3>Ingredients</h3>
+      <ul id="popupIngredients"></ul>
+      <h3>Instructions</h3>
+      <p id="popupInstructions"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <img src="assets/blueberry.png" alt="blueberry">
+  </footer>
+
+  <script src="scripts/drinks.js"></script>
 </body>
 </html>
