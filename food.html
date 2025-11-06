@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Recipes</title>
+  <link rel="stylesheet" href="styles/food.css" />
 </head>
 <body>
-    
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <img src="assets/sipsnsavor.jpg" alt="logo" class="logo-img" />
+      </div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#" class="active">Food</a>
+        <a href="#">Drinks</a>
+        <a href="#">Nutrition</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="title-section">
+      <h2>Food Recipes</h2>
+      <div class="underline"></div>
+    </section>
+
+    <section class="search-section">
+      <input type="text" id="searchInput" placeholder="Search for a recipe" />
+      <button id="searchBtn">Search</button>
+      <select id="typeSelect">
+        <option value="">Type of Food</option>
+      </select>
+      <select id="countrySelect">
+        <option value="">Select Country</option>
+      </select>
+      <button id="randomBtn" class="random-btn">Random Recipe</button>
+    </section>
+
+    <section id="recipes" class="recipes-grid"></section>
+
+    <div class="pagination">
+      <button id="prevPage" class="page-btn">←</button>
+      <span id="pageInfo">Page 1</span>
+      <button id="nextPage" class="page-btn">→</button>
+    </div>
+
+    <div class="bottom-image-container">
+      <img src="assets/sausage.png" alt="decor" class="bottom-image" />
+    </div>
+  </main>
+
+  <script src="scripts/food.js"></script>
 </body>
 </html>
