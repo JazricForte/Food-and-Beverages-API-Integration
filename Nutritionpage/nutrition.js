@@ -1,7 +1,8 @@
-const API_KEY = '38025vWyqBQQH8W+M5MY6A==r33l1Kp5FYOSkNNi';
-const API_URL = 'https://api.api-ninjas.com/v1/nutrition';
+const API_KEY = 'BakLBi7bEBW8UJPDr4cXxPsYSpRKvBXMsN3K5dk3'; // Replace with your actual key
+const API_URL = 'https://api.nal.usda.gov/fdc/v1/foods/search';
 
 let foodItems = [];
+let currentPage = 1;
 
 const input = document.getElementById('query');
 input.addEventListener('keypress', function(event) {
@@ -30,16 +31,10 @@ async function searchFood() {
     try {
         foodList.innerHTML = 'Loading...';
 
-        const url = API_URL + '?query=' + encodeURIComponent(query);
+        const url = `${API_URL}?api_key=${API_KEY}&query=${encodeURIComponent(query)}`;
         console.log('Search URL:', url);
 
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'X-Api-Key': API_KEY,
-                'Content-Type': 'application/json'
-            }
-        });
+         const response = await fetch(url);
 
         console.log('Response status:', response.status);
         if (!response.ok) {
@@ -51,14 +46,30 @@ async function searchFood() {
 
         const data = await response.json();
 
-        if (!Array.isArray(data) || data.length === 0) {
+        if (!data.foods || data.foods.length === 0) {
             foodList.innerHTML = `<p class="error">No nutrition information found for "${query}"</p>`;
             return;
         }
 
-        foodItems = data.map(item => ({ ...item, searchQuery: query }));
-        currentPage = 1;
+        foodItems = data.foods.map(item => ({
+            searchQuery: query,
+            description: item.description || '',
+            serving_size: item.householdServingFullText || '',
+            calories: getNutrient(item.foodNutrients, 1008),       // 1008 = Energy (kcal)
+            protein: getNutrient(item.foodNutrients, 1003),        // 1003 = Protein
+            carbs: getNutrient(item.foodNutrients, 1005),          // 1005 = Carbs
+            fat: getNutrient(item.foodNutrients, 1004),            // 1004 = Fat
+            fiber: getNutrient(item.foodNutrients, 1079),          // 1079 = Fiber
+            sugar: getNutrient(item.foodNutrients, 2000),          // 2000 = Sugar
+            saturatedFat: getNutrient(item.foodNutrients, 1258),   // 1258 = Saturated Fat
+            cholesterol: getNutrient(item.foodNutrients, 1253),    // 1253 = Cholesterol
+            sodium: getNutrient(item.foodNutrients, 1093),         // 1093 = Sodium
+            potassium: getNutrient(item.foodNutrients, 1092)       // 1092 = Potassium
+        }));
         displayFoodItems();
+        currentPage = 1;
+        pageInfo.textContent = `Result ${currentPage} / ${foodItems.length}`;
+
 
     } catch (error) {
         console.error('Search error:', error);
@@ -66,46 +77,62 @@ async function searchFood() {
     }
 }
 
+function getNutrient(nutrients, nutrientId) {
+    const n = nutrients.find(n => n.nutrientId === nutrientId);
+    return n ? `${n.value} ${n.unitName}` : 'N/A';
+}
+
 function displayFoodItems() {
     const foodList = document.getElementById('foodList');
+    const pageInfo = document.getElementById('pageInfo');
+    if (foodItems.length === 0) {
+        foodList.innerHTML = '<p>No items to display</p>';
+        pageInfo.textContent = '0 / 0';
+        return;
+    }
 
-    let html = '';
-    foodItems.forEach(item => {
-        html += `
-            <div class="food-item">
-                <div class="card-header">${item.searchQuery}</div>
-                <div class="card-body">
-                    <p class="serving-info">Serving size: ${item.serving_size_g}g</p>
-                    <div class="macro-nutrients">
-                        <div class="macro-nutrient">
-                            <strong>Calories</strong><br>${item.calories}
-                        </div>
-                        <div class="macro-nutrient">
-                            <strong>Protein</strong><br>${item.protein_g}g
-                        </div>
-                        <div class="macro-nutrient">
-                            <strong>Carbs</strong><br>${item.carbohydrates_total_g}g
-                        </div>
-                        <div class="macro-nutrient">
-                            <strong>Fat</strong><br>${item.fat_total_g}g
-                        </div>
-                    </div>
-                    <div class="nutrients-list">
-                        <ul>
-                            <li>Fiber: ${item.fiber_g}g</li>
-                            <li>Sugar: ${item.sugar_g}g</li>
-                            <li>Saturated Fat: ${item.fat_saturated_g}g</li>
-                            <li>Cholesterol: ${item.cholesterol_mg}mg</li>
-                            <li>Sodium: ${item.sodium_mg}mg</li>
-                            <li>Potassium: ${item.potassium_mg}mg</li>
-                        </ul>
-                    </div>
+    if (currentPage < 0) currentPage = 0;
+    if (currentPage >= foodItems.length) currentPage = foodItems.length - 1;
+    const item = foodItems[currentPage];
+    foodList.innerHTML = `
+        <div class="food-item">
+            <div class="card-header">${item.description} (${item.searchQuery})</div>
+            <div class="card-body">
+                <p class="serving-info">Serving: ${item.serving_size || 'N/A'}</p>
+                <div class="macro-nutrients">
+                    <div class="macro-nutrient"><strong>Calories</strong><br>${item.calories}</div>
+                    <div class="macro-nutrient"><strong>Protein</strong><br>${item.protein}</div>
+                    <div class="macro-nutrient"><strong>Carbs</strong><br>${item.carbs}</div>
+                    <div class="macro-nutrient"><strong>Fat</strong><br>${item.fat}</div>
+                </div>
+                <div class="nutrients-list">
+                    <ul>
+                        <li>Fiber: ${item.fiber}</li>
+                        <li>Sugar: ${item.sugar}</li>
+                        <li>Saturated Fat: ${item.saturatedFat}</li>
+                        <li>Cholesterol: ${item.cholesterol}</li>
+                        <li>Sodium: ${item.sodium}</li>
+                        <li>Potassium: ${item.potassium}</li>
+                    </ul>
                 </div>
             </div>
-            <button class="search-again" onclick="searchAgain()">Search again</button>
-        `;
-    });
-
-    foodList.innerHTML = html || '<p>No items to display</p>';
+        </div>
+        <button class="search-again" onclick="searchAgain()">Search again</button>
+    `;
+    pageInfo.textContent = `Result ${currentPage} of ${foodItems.length}`;
     window.scrollTo({ top: 150, behavior: 'smooth' });
 }
+
+document.getElementById('prevPage').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        displayFoodItems();
+    }
+});
+
+document.getElementById('nextPage').addEventListener('click', () => {
+    if (currentPage < foodItems.length - 1) {
+        currentPage++;
+        displayFoodItems();
+    }
+});

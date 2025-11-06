@@ -118,6 +118,7 @@ backPopupBtn.addEventListener('click', () => {
   drinkType.value = 'all';
   currentPage = 1;
   fetchAllDrinks();
+  document.getElementById("Header").classList.remove('hidden');
 });
 
 // Pagination
@@ -125,6 +126,7 @@ prevPage.addEventListener('click', () => {
   if (currentPage > 1) {
     currentPage--;
     displayDrinks();
+    document.getElementById("Header").classList.remove('hidden');
   }
 });
 
@@ -133,6 +135,7 @@ nextPage.addEventListener('click', () => {
   if (currentPage < totalPages) {
     currentPage++;
     displayDrinks();
+    document.getElementById("Header").classList.remove('hidden');
   }
 });
 
