@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Food Recipes</title>
   <link rel="stylesheet" href="styles/food.css" />
 </head>
+
 <body>
+
   <header>
     <div class="nav-container">
       <div class="logo">
@@ -23,12 +26,12 @@
 
   <main>
     <section class="title-section">
+      <img src="assets/chili.png" alt="Chili" class="chili-image">
       <h2>Food Recipes</h2>
       <img src="assets/redLine.png" alt="underline" class="underline-img" />
     </section>
 
     <section class="search-section">
-      <img src="assets/chili.png" alt="Chili" class="chili-image">
       <input type="text" id="searchInput" placeholder="Search for a recipe" />
       <button id="searchBtn">Search</button>
       <select id="typeSelect">
@@ -49,8 +52,21 @@
       <img src="assets/sausage.png" alt="decor" class="bottom-image" />
     </div>
 
+    <div id="recipeModal" class="modal">
+      <div class="modal-content">
+        <span id="closeX" class="close-x">&times;</span>
+        <img id="modalImg" alt="Meal Image" />
+        <h2 id="modalTitle"></h2>
+        <h3>Ingredients</h3>
+        <ul id="modalIngredients"></ul>
+        <h3>Instructions</h3>
+        <p id="modalInstructions"></p>
+        <button id="closeModal">Back to All Foods</button>
+      </div>
+    </div>
   </main>
 
   <script src="scripts/food.js"></script>
+
 </body>
 </html>
