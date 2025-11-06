@@ -12,15 +12,13 @@ const popupImg = document.getElementById('popupImg');
 const popupTitle = document.getElementById('popupTitle');
 const popupIngredients = document.getElementById('popupIngredients');
 const popupInstructions = document.getElementById('popupInstructions');
-
-// 🧩 We'll attach the button properly inside .popup-content
 const popupContent = document.querySelector('.popup-content');
 
 let allDrinks = [];
 let currentPage = 1;
 const drinksPerPage = 8;
 
-// ✅ Create Back to All Drinks button
+// Create Back to All Drinks button
 const backPopupBtn = document.createElement('button');
 backPopupBtn.textContent = 'Back to All Drinks';
 backPopupBtn.classList.add('back-btn');
@@ -44,7 +42,7 @@ backPopupBtn.addEventListener('mouseleave', () => (backPopupBtn.style.background
 // Append it at the bottom of popup content
 popupContent.appendChild(backPopupBtn);
 
-// ✅ Fetch ALL drinks (A–Z)
+// Fetch ALL drinks (A–Z)
 async function fetchAllDrinks() {
   allDrinks = [];
   for (let i = 97; i <= 122; i++) {
@@ -56,7 +54,7 @@ async function fetchAllDrinks() {
   displayDrinks();
 }
 
-// ✅ Display drinks for the current page
+// Display drinks for the current page
 function displayDrinks() {
   drinksContainer.innerHTML = '';
   const start = (currentPage - 1) * drinksPerPage;
@@ -78,7 +76,7 @@ function displayDrinks() {
   pageInfo.textContent = `${currentPage} / ${totalPages}`;
 }
 
-// ✅ Popup display (fetches full info if missing)
+// Popup display (fetches full info if missing)
 async function showPopup(drink) {
   if (!drink.strInstructions && drink.idDrink) {
     const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`);
@@ -105,12 +103,12 @@ async function showPopup(drink) {
   popup.classList.add('active');
 }
 
-// ✅ Close popup
+// Close popup
 closePopup.addEventListener('click', () => {
   popup.classList.remove('active');
 });
 
-// ✅ Back to All Drinks button inside popup
+// Back to All Drinks button inside popup
 backPopupBtn.addEventListener('click', () => {
   popup.classList.remove('active');
   searchInput.value = '';
@@ -119,7 +117,7 @@ backPopupBtn.addEventListener('click', () => {
   fetchAllDrinks();
 });
 
-// ✅ Pagination
+// Pagination
 prevPage.addEventListener('click', () => {
   if (currentPage > 1) {
     currentPage--;
@@ -135,7 +133,7 @@ nextPage.addEventListener('click', () => {
   }
 });
 
-// ✅ Search
+// Search
 searchInput.addEventListener('input', async () => {
   const query = searchInput.value.trim();
   if (!query) {
@@ -150,7 +148,7 @@ searchInput.addEventListener('input', async () => {
   displayDrinks();
 });
 
-// ✅ Filter by Category
+// Filter by Category
 drinkType.addEventListener('change', async () => {
   const selected = drinkType.value;
   if (selected === 'all') {
@@ -165,12 +163,12 @@ drinkType.addEventListener('change', async () => {
   displayDrinks();
 });
 
-// ✅ Random
+// Random
 randomBtn.addEventListener('click', async () => {
   const res = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
   const data = await res.json();
   showPopup(data.drinks[0]);
 });
 
-// ✅ Initial Load
+// Initial Load
 fetchAllDrinks();
