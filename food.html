@@ -24,10 +24,11 @@
   <main>
     <section class="title-section">
       <h2>Food Recipes</h2>
-      <div class="underline"></div>
+      <img src="assets/redLine.png" alt="underline" class="underline-img" />
     </section>
 
     <section class="search-section">
+      <img src="assets/chili.png" alt="Chili" class="chili-image">
       <input type="text" id="searchInput" placeholder="Search for a recipe" />
       <button id="searchBtn">Search</button>
       <select id="typeSelect">
@@ -42,14 +43,12 @@
     <section id="recipes" class="recipes-grid"></section>
 
     <div class="pagination">
-      <button id="prevPage" class="page-btn">←</button>
+      <button id="prevPage" class="page-btn prev-btn">←</button>
       <span id="pageInfo">Page 1</span>
-      <button id="nextPage" class="page-btn">→</button>
-    </div>
-
-    <div class="bottom-image-container">
+      <button id="nextPage" class="page-btn next-btn">→</button>
       <img src="assets/sausage.png" alt="decor" class="bottom-image" />
     </div>
+
   </main>
 
   <script src="scripts/food.js"></script>
