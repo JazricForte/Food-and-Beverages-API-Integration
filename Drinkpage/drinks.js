@@ -78,6 +78,7 @@ function displayDrinks() {
 
 // Popup display (fetches full info if missing)
 async function showPopup(drink) {
+  document.getElementById("Header").classList.add('hidden');
   if (!drink.strInstructions && drink.idDrink) {
     const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`);
     const data = await res.json();
@@ -106,6 +107,7 @@ async function showPopup(drink) {
 // Close popup
 closePopup.addEventListener('click', () => {
   popup.classList.remove('active');
+  document.getElementById("Header").classList.remove('hidden');
 });
 
 // Back to All Drinks button inside popup
