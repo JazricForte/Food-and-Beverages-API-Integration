@@ -45,6 +45,7 @@ function renderMeals() {
 
 // Show meal details in modal
 function showMealDetails(mealId) {
+  document.getElementById("Header").classList.add('hidden');
   fetch(`${apiBase}lookup.php?i=${mealId}`)
     .then(res => res.json())
     .then(data => {
@@ -81,11 +82,13 @@ function showMealDetails(mealId) {
 document.getElementById("closeModal").addEventListener("click", () => {
   document.getElementById("recipeModal").style.display = "none";
   document.body.style.overflow = "auto";
+  document.getElementById("Header").classList.remove('hidden');
 });
 
 document.getElementById("closeX").addEventListener("click", () => {
   document.getElementById("recipeModal").style.display = "none";
   document.body.style.overflow = "auto";
+  document.getElementById("Header").classList.remove('hidden');
 });
 
 /* -------------------------
