@@ -56,6 +56,7 @@ async function fetchAllDrinks() {
 
 // Display drinks for the current page
 function displayDrinks() {
+  document.getElementById("Header").classList.add('hidden');
   drinksContainer.innerHTML = '';
   const start = (currentPage - 1) * drinksPerPage;
   const end = start + drinksPerPage;
