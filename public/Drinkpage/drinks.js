@@ -5,6 +5,7 @@ const randomBtn = document.getElementById('randomBtn');
 const pageInfo = document.getElementById('pageInfo');
 const prevPage = document.getElementById('prevPage');
 const nextPage = document.getElementById('nextPage');
+const searchBtn = document.getElementById('searchBtn');
 
 const popup = document.getElementById('popup');
 const closePopup = document.getElementById('closePopup');
@@ -146,6 +147,22 @@ searchInput.addEventListener('input', async () => {
     fetchAllDrinks();
     return;
   }
+
+  const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`);
+  const data = await res.json();
+  allDrinks = data.drinks || [];
+  currentPage = 1;
+  displayDrinks();
+});
+
+searchBtn.addEventListener('click', async () => {
+  const query = searchInput.value;
+  if (!query) {
+    fetchAllDrinks();
+    return;
+  }
+
+  console.log('Searching for:', query);
 
   const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`);
   const data = await res.json();
