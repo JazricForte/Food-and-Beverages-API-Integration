@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/", "destination": "/Homepage/index.html" },
-    { "source": "/food", "destination": "/Foodpage/food.html" },
-    { "source": "/drink", "destination": "/Drinkpage/drinks.html" },
-    { "source": "/nutrition", "destination": "/Nutritionpage/nutrition.html" }
-  ]
-}
