@@ -51,11 +51,15 @@ function showMealDetails(mealId) {
       const modal = document.getElementById("recipeModal");
       const modalImg = document.getElementById("modalImg");
       const modalTitle = document.getElementById("modalTitle");
+      const modalCountry = document.getElementById("country");
       const modalIngredients = document.getElementById("modalIngredients");
       const modalInstructions = document.getElementById("modalInstructions");
 
       modalImg.src = meal.strMealThumb;
       modalTitle.textContent = meal.strMeal;
+      modalCountry.textContent = meal.strArea
+    ? `Country: ${meal.strArea}`
+    : "Country: Unknown";
 
       // Collect ingredients + measurements
       modalIngredients.innerHTML = "";
