@@ -1,1 +1,8 @@
-{"rewrites": [{"source": "/(.*)", "destination": "/"}]}
+{
+  "rewrites": [
+    { "source": "/", "destination": "/Homepage/index.html" },
+    { "source": "/food", "destination": "/Foodpage/index.html" },
+    { "source": "/drink", "destination": "/Drinkpage/index.html" },
+    { "source": "/nutrition", "destination": "/Nutritionpage/index.html" }
+  ]
+}
