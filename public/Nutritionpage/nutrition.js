@@ -1,4 +1,4 @@
-const API_KEY = 'BakLBi7bEBW8UJPDr4cXxPsYSpRKvBXMsN3K5dk3'; // Replace with your actual key
+const API_KEY = 'BakLBi7bEBW8UJPDr4cXxPsYSpRKvBXMsN3K5dk3';
 const API_URL = 'https://api.nal.usda.gov/fdc/v1/foods/search';
 
 let foodItems = [];

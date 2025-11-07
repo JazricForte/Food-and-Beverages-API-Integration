@@ -18,7 +18,7 @@ let allDrinks = [];
 let currentPage = 1;
 const drinksPerPage = 8;
 
-// Create Back to All Drinks button
+// Back to All Drinks button
 const backPopupBtn = document.createElement('button');
 backPopupBtn.textContent = 'Back to All Drinks';
 backPopupBtn.classList.add('back-btn');

@@ -10,9 +10,7 @@ let currentMeals = [];
 let currentPage = 1;
 const itemsPerPage = 8;
 
-/* -------------------------
-   Helper: render with paging
-   ------------------------- */
+/* HELPER (RENDER WITH PAGING) */
 function renderMeals() {
   recipesContainer.innerHTML = "";
 
@@ -74,7 +72,7 @@ function showMealDetails(mealId) {
       modalInstructions.textContent = meal.strInstructions;
 
       modal.style.display = "flex";
-      document.body.style.overflow = "hidden"; // prevent background scroll
+      document.body.style.overflow = "hidden";
     });
 }
 
@@ -91,9 +89,7 @@ document.getElementById("closeX").addEventListener("click", () => {
   document.getElementById("Header").classList.remove('hidden');
 });
 
-/* -------------------------
-   Pagination buttons
-   ------------------------- */
+/* PAGINATION BUTTONS */
 document.getElementById("prevPage").addEventListener("click", () => {
   if (currentPage > 1) {
     currentPage--;
@@ -109,9 +105,7 @@ document.getElementById("nextPage").addEventListener("click", () => {
   }
 });
 
-/* -------------------------
-   Basic fetchers
-   ------------------------- */
+/* BASIC FETCHERS */
 // Search by text (returns full meal objects)
 async function fetchMealsBySearch(query = "") {
   try {
@@ -132,16 +126,14 @@ async function fetchListByFilter(paramKey, value) {
   try {
     const res = await fetch(`${apiBase}filter.php?${paramKey}=${encodeURIComponent(value)}`);
     const data = await res.json();
-    return data.meals || []; // might be null -> return []
+    return data.meals || []; 
   } catch (err) {
     console.error("filter fetch error:", err);
     return [];
   }
 }
 
-/* -------------------------
-   Combined filter logic
-   ------------------------- */
+/* COMBINED FILTER LOGIC */
 async function applyFilters() {
   const category = typeSelect.value;
   const area = countrySelect.value;
@@ -157,7 +149,7 @@ async function applyFilters() {
   // If only category selected:
   if (category && !area) {
     const list = await fetchListByFilter("c", category);
-    currentMeals = list; // items contain idMeal, strMeal, strMealThumb
+    currentMeals = list;
     currentPage = 1;
     renderMeals();
     return;
@@ -188,9 +180,7 @@ async function applyFilters() {
   renderMeals();
 }
 
-/* -------------------------
-   Dropdowns and event wiring
-   ------------------------- */
+/* DROPDOWNS AND EVENT WIRING */
 async function loadDropdowns() {
   try {
     // categories
@@ -232,12 +222,8 @@ countrySelect.addEventListener("change", () => {
   applyFilters();
 });
 
-/* -------------------------
-   Search, random and init
-   ------------------------- */
+/* SEARCH, RANDOM, AND INIT */
 searchBtn.addEventListener("click", () => {
-  // when user searches manually, clear filters visually (if you want) or keep them
-  // here we'll clear the selects to avoid conflicting expectations
   typeSelect.value = "";
   countrySelect.value = "";
   fetchMealsBySearch(searchInput.value.trim());
@@ -266,11 +252,8 @@ randomBtn.addEventListener("click", async () => {
   }
 });
 
-/* -------------------------
-   Initialize app
-   ------------------------- */
+/* INITIALIZE APP */
 (async function init() {
   await loadDropdowns();
-  // initial fetch: empty search to show some default list (search.php?s= returns many)
   await fetchMealsBySearch("");
 })();
