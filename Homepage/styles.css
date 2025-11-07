@@ -67,7 +67,11 @@
     margin-bottom: 60px;
     max-width: 650px;
     opacity: 0.9;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.2px;;
+}
+
+.kitchen-description {
+    text-align: justify;
 }
 
 .hero-buttons {
@@ -434,7 +438,6 @@
     max-width: 1100px;
     justify-content: center;
     gap: 100px;
-    align-items: flex-start;
 }
 
 .why-column {
