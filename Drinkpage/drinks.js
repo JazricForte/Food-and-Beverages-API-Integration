@@ -178,3 +178,4 @@ randomBtn.addEventListener('click', async () => {
 
 // Initial Load
 fetchAllDrinks();
+document.getElementById("Header").classList.remove('hidden');
